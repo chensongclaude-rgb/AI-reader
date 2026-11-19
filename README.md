@@ -36,14 +36,25 @@ npm start          # 打开 http://localhost:8787
 | `AI_READER_MODEL` | `claude-opus-5-5` | 使用的模型 |
 | `PORT` | `8787` | 后端端口 |
 
+## 测试
+
+```bash
+npm test           # 运行 tests/ 里的自动测试（不调用真实 API，不需要 API Key）
+npm run typecheck  # 类型检查
+```
+
+每次 push 或开 PR，GitHub Actions（`.github/workflows/ci.yml`）会自动跑类型检查、测试和打包，结果显示在 PR 页面和仓库的 Actions 标签里。
+
 ## 结构
 
 ```
-server/index.ts     后端：保存上传的 PDF，调用 Claude，流式返回回答和页码引用
+server/index.ts     后端入口：启动服务
+server/app.ts       后端逻辑：保存上传的 PDF，调用 Claude，流式返回回答和页码引用
 web/src/App.tsx     页面骨架：打开文件、选中文字的工具栏、发起提问
 web/src/PdfViewer.tsx  PDF 渲染（pdf.js）：按需渲染页面、文字层、当前页跟踪、跳页
 web/src/ChatPanel.tsx  右侧对话面板：Markdown 回答、可点击的页码引用
 web/src/api.ts      前端调用后端的接口
+tests/              自动测试（Vitest）
 ```
 
 ## 实现要点

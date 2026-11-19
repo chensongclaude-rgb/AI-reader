@@ -10,5 +10,5 @@
     "noEmit": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["web/src", "server", "vite.config.ts"]
+  "include": ["web/src", "server", "tests", "vite.config.ts", "vitest.config.ts"]
 }
